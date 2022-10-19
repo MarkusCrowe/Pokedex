@@ -81,11 +81,23 @@ nav ul li:hover {
     border-radius: 5px;
 }
 
-/* nav .foot {
+nav .foot {
+    height: 40px;
     background: black;
-} */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+nav .foot p{
+    font-size: 0.6rem;
+}
+nav .foot a i{
+    font-size: 1.5rem;
+    color: white;
+}
 .container {
     width: 80%;
+    height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -146,4 +158,13 @@ nav ul li:hover {
     align-items: center;
     justify-content: space-between;
     margin: 20px;
+}
+
+.resume {
+    width: 90%;
+    height: 90%;
+    background: rgb(161, 21, 21);
+    border-radius: 15px;
+    box-shadow: 0 0 15px black;
+    margin: auto;
 }

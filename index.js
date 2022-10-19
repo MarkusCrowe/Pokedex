@@ -12,17 +12,26 @@ async function aleaPokemons() {
     .then((data) => (pokemons = data));
 
   aleaPokemonsDisplay();
+  let cards = document.querySelectorAll(".cards");
+  console.log(cards);
+  cards.forEach(card => {
+    card.addEventListener("click", (e) => {
+      console.log(e.target.id);
+      fetchPokemon(e.target.id);
+    })
+});
+
 }
 
 function aleaPokemonsDisplay() {
   container.innerHTML = pokemons[0]
     .map((pokemon) =>
       `            
-  <div class="cards">
+  <div class="cards" id="${pokemon.id}">
       <p class="id">${pokemon.id}</p>
       <img src="${pokemon.sprite}" class="sprite">          
-    <img src="${pokemon.image}">
-    <h1>${pokemon.name}</h1> 
+    <img src="${pokemon.image}" id="${pokemon.id}">
+    <h1 class="name">${pokemon.name}</h1> 
     </div>
     `
     )
@@ -44,8 +53,14 @@ async function generation() {
     .then((res) => res.json())
     .then((data) => (pokemons = data));
 
-  console.log(pokemons);
   genDisplay();
+  let cards = document.querySelectorAll(".cards");
+  console.log(cards);
+  cards.forEach(card => {
+    card.addEventListener("click", (e) => {
+      console.log(e.target.id);
+      fetchPokemon(e.target.id);
+    })});
 };
 
 function genDisplay() {
@@ -55,7 +70,7 @@ function genDisplay() {
     <div class="cards">
         <p class="id">${pokemon.id}</p>
         <img src="${pokemon.sprite}" class="sprite">          
-      <img src="${pokemon.image}">
+      <img src="${pokemon.image}" id="${pokemon.id}">
       <h1>${pokemon.name}</h1> 
       </div>
       `
@@ -69,16 +84,24 @@ async function allPokemons() {
     .then((data) => (pokemons = data));
 
   allPokemonsDisplay();
+
+  let allCards = document.querySelectorAll(".all_cards");
+  console.log(allCards);
+  allCards.forEach(card => {
+    card.addEventListener("click", (e) => {
+      console.log(e.target.id);
+      fetchPokemon(e.target.id);
+    })});
 };
 
 function allPokemonsDisplay() {
   container.innerHTML = pokemons
     .map((pokemon) =>
       `            
-  <div class="all_cards">
-      <p class="id">${pokemon.id}</p>
-      <img src="${pokemon.sprite}" class="sprite">          
-      <h1>${pokemon.name}</h1> 
+  <div class="all_cards" id="${pokemon.id}">
+      <p class="id" id="${pokemon.id}">${pokemon.id}</p>
+      <img src="${pokemon.sprite}" class="sprite" id="${pokemon.id}">          
+      <h1 id="${pokemon.id}">${pokemon.name}</h1> 
     </div>
     `
     )
@@ -111,18 +134,17 @@ async function fetchPokemon(search) {
 function searchPokemonDisplay() {
   container.innerHTML = 
       `            
-      <div class="cards">
+      <div class="resume">
         <p class="id">${pokemons.id}</p>
         <img src="${pokemons.sprite}" class="sprite">          
         <img src="${pokemons.image}">
-        <h1>${pokemons.name}</h1> 
+        <h1 class="name">${pokemons.name}</h1> 
       </div>
       `
-};
+  };
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    // showsDislpay();
 });
 
 function debounce(callback, wait) {
@@ -139,3 +161,9 @@ input.addEventListener('input', debounce(() => {
     fetchPokemon(input.value);
   }, 750));
 
+// let names = document.querySelectorAll(".name");
+// document.querySelectorAll(".name").forEach(name => {
+//     name.addEventListener("click", () => {
+//       console.log("test");
+//     })
+// });
